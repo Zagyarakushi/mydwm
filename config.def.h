@@ -150,10 +150,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_z,		incrigaps,	{.i = +3 } },
 	{ MODKEY,			XK_x,		incrgaps,	{.i = -3 } },
 	{ MODKEY|ShiftMask,		XK_x,		incrigaps,	{.i = -3 } },
-	{ MODKEY,			XK_c,		spawn,		SHCMD("xbacklight -inc 5;kill -45 $(pidof dwmblocks)") }, 
-	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("xbacklight -inc 10;kill -45 $(pidof dwmblocks)") }, 
-	{ MODKEY,			XK_v,		spawn,		SHCMD("xbacklight -dec 5;kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("xbacklight -dec 10;kill -45 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_c,		spawn,		SHCMD("doas xbacklight -inc 5;kill -45 $(pidof dwmblocks)") }, 
+	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("doas xbacklight -inc 10;kill -45 $(pidof dwmblocks)") }, 
+	{ MODKEY,			XK_v,		spawn,		SHCMD("doas xbacklight -dec 5;kill -45 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("doas xbacklight -dec 10;kill -45 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
 	/*{ MODKEY,			XK_n,		spawn,		SHCMD("st -e nvim -c VimwikiIndex") },*/
