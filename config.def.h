@@ -29,9 +29,21 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "nmtui", "-g", "120x34", "-e", "nmtui", NULL };
+const char *spcmd3[] = {"st", "-n", "lf", "-g", "120x34", "-e", "lf", NULL };
+const char *spcmd4[] = {"st", "-n", "htop", "-g", "120x34", "-e", "htop", NULL };
+const char *spcmd5[] = {"st", "-n", "newsboat", "-g", "120x34", "-e", "newsboat", NULL };
+const char *spcmd6[] = {"st", "-n", "ncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
+const char *spcmd7[] = {"st", "-n", "pulsemixer", "-g", "120x34", "-e", "pulsemixer", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
+	{"nmtui",      spcmd2},
+	{"lf",      spcmd3},
+	{"htop",      spcmd4},
+	{"newsboat",      spcmd5},
+	{"ncmpcpp",      spcmd6},
+	{"pulsemixer",      spcmd7},
 };
 
 /* tagging */
@@ -42,6 +54,12 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,    	    0,           -1 },
 	{ NULL,           "spterm",             NULL,           SPTAG(0),               1,                       -1 },
+	{ NULL,           "nmtui",             NULL,           SPTAG(1),               1,                       -1 },
+	{ NULL,           "lf",             NULL,           SPTAG(2),               1,                       -1 },
+	{ NULL,           "htop",             NULL,           SPTAG(3),               1,                       -1 },
+	{ NULL,           "newsboat",             NULL,           SPTAG(4),               1,                       -1 },
+	{ NULL,           "ncmpcpp",             NULL,           SPTAG(5),               1,                       -1 },
+	{ NULL,           "pulsemixer",             NULL,           SPTAG(6),               1,                       -1 },
 
 };
 
@@ -86,7 +104,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	/* { MODKEY|ShiftMask,		XK_Escape,	spawn,	SHCMD("") }, */
-	{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") } ,
+	/*{ MODKEY,			XK_grave,	spawn,	SHCMD("dmenuunicode") } ,*/
 	/*{ MODKEY|ShiftMask,		XK_grave,	togglescratch,	SHCMD("") },*/
 	TAGKEYS(			XK_1,		0)
 	TAGKEYS(			XK_2,		1)
@@ -110,11 +128,11 @@ static Key keys[] = {
 	{ MODKEY,			XK_q,		killclient,	{0} },
 	{ MODKEY|ShiftMask,		XK_q,		spawn,		SHCMD("sysact") },
 	{ MODKEY,			XK_w,		spawn,		SHCMD("$BROWSER") },
-	{ MODKEY|ShiftMask,		XK_w,		spawn,		SHCMD("st -e nmtui") },
+	{ MODKEY|ShiftMask,		XK_w,		togglescratch,	{.ui = 1} },
 	/*{ MODKEY,			XK_e,		spawn,		SHCMD("st -e neomutt ; pkill -RTMIN+12 dwmblocks; rmdir ~/.abook") },*/
 	/*{ MODKEY|ShiftMask,		XK_e,		spawn,		SHCMD("st -e abook -C ~/.config/abook/abookrc --datafile ~/.config/abook/addressbook") },*/
-	{ MODKEY,			XK_r,		spawn,		SHCMD("st -e nnn") },
-	{ MODKEY|ShiftMask,		XK_r,		spawn,		SHCMD("st -e htop") },
+	{ MODKEY,			XK_r,		togglescratch,	{.ui = 2 } },
+	{ MODKEY|ShiftMask,		XK_r,		togglescratch,	{.ui = 3} },
 	{ MODKEY,			XK_t,		setlayout,	{.v = &layouts[0]} }, /* tile */
 	{ MODKEY|ShiftMask,		XK_t,		setlayout,	{.v = &layouts[1]} }, /* monocle */
 	{ MODKEY,			XK_y,		setlayout,	{.v = &layouts[2]} }, /* bstack */
@@ -159,10 +177,11 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("xbacklight -dec 10;kill -45 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
-	/*{ MODKEY,			XK_n,		spawn,		SHCMD("st -e nvim -c VimwikiIndex") },*/
-	{ MODKEY|ShiftMask,		XK_n,		spawn,		SHCMD("st -e newsboat") },
+	{ MODKEY,			XK_n,		togglescratch,	{.ui = 5} },
+	{ MODKEY|ShiftMask,		XK_n,		togglescratch,	{.ui = 4} },
 	{ MODKEY,			XK_m,		spawn,		SHCMD("pamixer -t;kill -44 $(pidof dwmblocks)") },
-	/*{ MODKEY|ShiftMask,		XK_m,		spawn,		SHCMD("pamixer -t; kill -44 $(pidof dwmblocks)") },*/
+	/*{ MODKEY|ShiftMask,		XK_m,		togglescratch,	{.ui = 5} },*/
+	{ MODKEY,			XK_e,		togglescratch,	{.ui = 6} },
 	{ MODKEY,			XK_comma,	spawn,		SHCMD("mpc prev") },
 	/*{ MODKEY|ShiftMask,		XK_comma,	spawn,		SHCMD("mpc seek 0%") },*/
 	{ MODKEY,			XK_period,	spawn,		SHCMD("mpc next") },
