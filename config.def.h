@@ -54,13 +54,12 @@ static const Rule rules[] = {
 	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
 	{ "Firefox",  NULL,       NULL,       0,    	    0,           -1 },
 	{ NULL,           "spterm",             NULL,           SPTAG(0),               1,                       -1 },
-	{ NULL,           "nmtui",             NULL,           SPTAG(1),               1,                       -1 },
-	{ NULL,           "lf",             NULL,           SPTAG(2),               1,                       -1 },
-	{ NULL,           "htop",             NULL,           SPTAG(3),               1,                       -1 },
-	{ NULL,           "newsboat",             NULL,           SPTAG(4),               1,                       -1 },
-	{ NULL,           "ncmpcpp",             NULL,           SPTAG(5),               1,                       -1 },
-	{ NULL,           "pulsemixer",             NULL,           SPTAG(6),               1,                       -1 },
-
+	{ NULL,           "nmtui",             	NULL,           SPTAG(1),               1,                       -1 },
+	{ NULL,           "lf",             	NULL,           SPTAG(2),               1,                       -1 },
+	{ NULL,           "htop",             	NULL,           SPTAG(3),               1,                       -1 },
+	{ NULL,           "newsboat",          	NULL,           SPTAG(4),               1,                       -1 },
+	{ NULL,           "ncmpcpp",            NULL,           SPTAG(5),               1,                       -1 },
+	{ NULL,           "pulsemixer",         NULL,           SPTAG(6),               1,                       -1 },
 };
 
 /* layout(s) */
@@ -176,7 +175,7 @@ static Key keys[] = {
 	{ MODKEY,			XK_v,		spawn,		SHCMD("xbacklight -dec 5;kill -45 $(pidof dwmblocks)") },
 	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("xbacklight -dec 10;kill -45 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
-	/* { MODKEY|ShiftMask,		XK_b,		spawn,		SHCMD("") }, */
+	/*{ MODKEY|ShiftMask,		XK_b,		togglescratch,		{.ui = 7} },*/
 	{ MODKEY,			XK_n,		togglescratch,	{.ui = 5} },
 	{ MODKEY|ShiftMask,		XK_n,		togglescratch,	{.ui = 4} },
 	{ MODKEY,			XK_m,		spawn,		SHCMD("pamixer -t;kill -44 $(pidof dwmblocks)") },
