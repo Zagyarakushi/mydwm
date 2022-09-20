@@ -36,52 +36,68 @@ const char *spcmd5[] = {"st", "-n", "newsboat", "-g", "120x34", "-e", "newsboat"
 const char *spcmd6[] = {"st", "-n", "ncmpcpp", "-g", "120x34", "-e", "ncmpcpp", NULL };
 const char *spcmd7[] = {"st", "-n", "pulsemixer", "-g", "120x34", "-e", "pulsemixer", NULL };
 static Sp scratchpads[] = {
-	/* name          cmd  */
-	{"spterm",      spcmd1},
-	{"nmtui",      spcmd2},
-	{"lf",      spcmd3},
-	{"htop",      spcmd4},
-	{"newsboat",      spcmd5},
-	{"ncmpcpp",      spcmd6},
-	{"pulsemixer",      spcmd7},
+        /* name          cmd  */
+        {"spterm",      spcmd1},
+        {"nmtui",      spcmd2},
+        {"lf",      spcmd3},
+        {"htop",      spcmd4},
+        {"newsboat",      spcmd5},
+        {"ncmpcpp",      spcmd6},
+        {"pulsemixer",      spcmd7},
 };
 
 /* tagging */
 static const char *tags[] = { "一", "二", "三", "四", "五", "六", "七", "八", "九" };
-
 static const Rule rules[] = {
-	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Gimp",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       0,    	    0,           -1 },
-	{ NULL,           "spterm",             NULL,           SPTAG(0),               1,                       -1 },
-	{ NULL,           "nmtui",             	NULL,           SPTAG(1),               1,                       -1 },
-	{ NULL,           "lf",             	NULL,           SPTAG(2),               1,                       -1 },
-	{ NULL,           "htop",             	NULL,           SPTAG(3),               1,                       -1 },
-	{ NULL,           "newsboat",          	NULL,           SPTAG(4),               1,                       -1 },
-	{ NULL,           "ncmpcpp",            NULL,           SPTAG(5),               1,                       -1 },
-	{ NULL,           "pulsemixer",         NULL,           SPTAG(6),               1,                       -1 },
+        /* class      instance    title       tags mask     isfloating   monitor */
+        { "Gimp",     NULL,       NULL,       0,            1,           -1 },
+        { "Firefox",  NULL,       NULL,       0,            0,           -1 },
+        { NULL,           "spterm",             NULL,           SPTAG(0),               1,
+                   -1 },
+        { NULL,           "nmtui",              NULL,           SPTAG(1),               1,
+                   -1 },
+        { NULL,           "lf",                 NULL,           SPTAG(2),               1,
+                   -1 },
+        { NULL,           "htop",               NULL,           SPTAG(3),               1,
+                   -1 },
+        { NULL,           "newsboat",           NULL,           SPTAG(4),               1,
+                   -1 },
+        { NULL,           "ncmpcpp",            NULL,           SPTAG(5),               1,
+                   -1 },
+        { NULL,           "pulsemixer",         NULL,           SPTAG(6),               1,
+                   -1 },
 };
 
 /* layout(s) */
 static const float mfact     = 0.55; /* factor of master area size [0.05..0.95] */
 static const int nmaster     = 1;    /* number of clients in master area */
 static const int resizehints = 1;    /* 1 means respect size hints in tiled resizals */
+static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#define FORCE_VSPLIT 1  /* nrowgrid layout: force two clients to always split vertically */
 #include "vanitygaps.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "[M]",      monocle },
+	{ "[@]",      spiral },
+	{ "[\]",      dwindle },
+	{ "H[]",      deck },
 	{ "TTT",      bstack },
 	{ "===",      bstackhoriz },
+	{ "HHH",      grid },
+	{ "###",      nrowgrid },
+	{ "---",      horizgrid },
+	{ ":::",      gaplessgrid },
 	{ "|M|",      centeredmaster },
 	{ ">M>",      centeredfloatingmaster },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
+	{ NULL,       NULL },
 };
 
 /* key definitions */
-#define MODKEY Mod4Mask
+#define MODKEY Mod1Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -89,12 +105,12 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
-static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+static const char *termcmd[]  = { "st", NULL };
 
 #include <X11/XF86keysym.h>
 #include "movestack.c"
@@ -251,7 +267,7 @@ static Key keys[] = {
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
-static Button buttons[] = {
+static const Button buttons[] = {
 	/* click                event mask      button          function        argument */
 	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
 	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },

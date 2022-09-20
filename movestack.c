@@ -1,4 +1,4 @@
-void
+void 
 movestack(const Arg *arg) {
 	Client *c = NULL, *p = NULL, *pc = NULL, *i;
 
@@ -46,4 +46,3 @@ movestack(const Arg *arg) {
 		arrange(selmon);
 	}
 }
-
