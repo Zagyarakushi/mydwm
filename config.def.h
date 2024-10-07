@@ -178,10 +178,10 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,		XK_z,		incrigaps,	{.i = +3 } },
 	{ MODKEY,			XK_x,		incrgaps,	{.i = -3 } },
 	{ MODKEY|ShiftMask,		XK_x,		incrigaps,	{.i = -3 } },
-	{ MODKEY,			XK_c,		spawn,		SHCMD("xbacklight -inc 5;kill -45 $(pidof dwmblocks)") }, 
-	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("xbacklight -inc 10;kill -45 $(pidof dwmblocks)") }, 
-	{ MODKEY,			XK_v,		spawn,		SHCMD("xbacklight -dec 5;kill -45 $(pidof dwmblocks)") },
-	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("xbacklight -dec 10;kill -45 $(pidof dwmblocks)") },
+	{ MODKEY,			XK_c,		spawn,		SHCMD("xbacklight -inc 5;kill -44 $(pidof dwmblocks)") }, 
+	{ MODKEY|ShiftMask,		XK_c,		spawn,		SHCMD("xbacklight -inc 10;kill -44 $(pidof dwmblocks)") }, 
+	{ MODKEY,			XK_v,		spawn,		SHCMD("xbacklight -dec 5;kill -44 $(pidof dwmblocks)") },
+	{ MODKEY|ShiftMask,		XK_v,		spawn,		SHCMD("xbacklight -dec 10;kill -44 $(pidof dwmblocks)") },
 	{ MODKEY,			XK_b,		togglebar,	{0} },
 	/*{ MODKEY|ShiftMask,		XK_b,		togglescratch,		{.ui = 7} },*/
 	{ MODKEY,			XK_n,		togglescratch,	{.ui = 5} },
@@ -252,8 +252,8 @@ static Key keys[] = {
 	{ 0, XF86XK_TouchpadToggle,	spawn,		SHCMD("(synclient | grep 'TouchpadOff.*1' && synclient TouchpadOff=0) || synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOff,	spawn,		SHCMD("synclient TouchpadOff=1") },
 	{ 0, XF86XK_TouchpadOn,		spawn,		SHCMD("synclient TouchpadOff=0") },
-	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15;kill -45 $(pidof dwmblocks)") },
-	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15;kill -45 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessUp,	spawn,		SHCMD("xbacklight -inc 15;kill -44 $(pidof dwmblocks)") },
+	{ 0, XF86XK_MonBrightnessDown,	spawn,		SHCMD("xbacklight -dec 15;kill -44 $(pidof dwmblocks)") },
 
 };
 
