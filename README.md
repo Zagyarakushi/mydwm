@@ -8,12 +8,6 @@ dwm is a lightweight dynamic window manager from the suckless project.
 
 ---
 
-## 📸 Preview
-
-![dwm screenshot](dwm.png)
-
----
-
 ## ✨ Features
 
 - Minimal X11 window manager
