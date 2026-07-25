@@ -1,114 +1,134 @@
-<h1 align="center">
-  <br>
-  <a href="https://gitlab.com/zagyarakushi/mydwm"><img src="" alt="My dwm config"></a>
-</h1>
+# My dwm
 
-<h4 align="center">My dwm config</h4>
+A customised build of dwm with personal patches and configuration improvements for a minimal, keyboard-driven Linux workflow.
 
-Note: This project was originally pushed to Gitlab and as such, all issues, pull/merge requests and any other disucussion or changes should be made [here](https://gitlab.com/zagyarakushi/mydwm). (In case you are wondering, I have this mirrored on Github so people can follow the project even if they prefer Github. Also it acts as a backup.)
+This build extends dwm with additional window management features while maintaining the simplicity and performance of the suckless philosophy.
 
-[![License](https://img.shields.io/badge/License-MIT-lightgray.svg?style=flat-square)]()
+dwm is a lightweight dynamic window manager from the suckless project.
 
+---
 
-# Table of contents
------------------
+## 📸 Preview
 
-* [Introduction](#introduction)
-* [Installation](#installation)
-* [Usage](#usage)
-* [Known issues and limitations](#known-issues-and-limitations)
-* [Getting help](#getting-help)
-* [Contributing](#contributing)
-* [License](#license)
+![dwm screenshot](screenshots/dwm.png)
 
+---
 
-# ⚡ Introduction
-------------
+## ✨ Features
 
-This repository contains my dwm configuration which I use daily.
+- Minimal X11 window manager
+- Keyboard-driven workflow
+- Custom keybindings
+- Personal appearance configuration
+- Lightweight and fast desktop environment
 
-![screenshot]()
+---
 
+## 🔧 Included Patches
 
-# 📖 Installation
-------------
+This build includes the following dwm patches:
 
-You will need gcc, make and required libraries which vary distro by distro.
+- **actualfullscreen**  
+  Enables true fullscreen behaviour by removing window borders and gaps.
 
-#### Void Linux
+- **alwaysfullscreen**  
+  Keeps fullscreen windows always visible above other windows.
+
+- **movestack**  
+  Allows moving windows within the stack using keyboard shortcuts.
+
+- **pertag**  
+  Enables separate layouts and settings for each tag/workspace.
+
+- **scratchpad**  
+  Adds a hidden terminal or application window that can be toggled quickly.
+
+- **sticky**  
+  Allows windows to remain visible across all tags/workspaces.
+
+- **vanitygapsforalllayouts**  
+  Adds configurable gaps between windows across all layouts.
+
+---
+
+## 🛠️ Requirements
+
+You need:
+
+- GCC
+- Make
+- X11 development libraries
+- Xft development libraries
+- Xinerama development libraries
+
+### Void Linux
 
 ```bash
-xbps-install -S gcc make
+sudo xbps-install -S gcc make libX11-devel libXft-devel libXinerama-devel
 ```
 
-For libraries it could be libX11, libX11-devel, libXft, libXft-devel etc. If the required library is missing then it will show an error and you just need to take the name and find the right package.
+Other distributions may use different package names.
 
-#### Then clone the repository
+---
+
+## 🚀 Installation
+
+Clone the repository:
 
 ```bash
-git clone https://gitlab.com/zagyarakushi/mydwm
+git clone https://gitlab.com/zagyarakushi/mydwm.git
+
+cd mydwm
 ```
 
-
-# 📝 Usage
------
-
-Now go to the directory and compile and install.
-
-#### Compile
+Build:
 
 ```bash
 make
 ```
 
-Then intall dwm
-
-#### Install
+Install:
 
 ```bash
-make install
+sudo make install
 ```
 
-Or just do "make install" which should compile and install at the same time.
+---
 
-#### Updating
+## ⚙️ Configuration
 
-If you make a change and want to update the binary then you need to recompile and install again. Except this time, you need to remove some files.
+The main configuration file is:
 
-#### Remove compiled binary and some files
+```
+config.h
+```
+
+Modify it to customise:
+
+- Keybindings
+- Fonts
+- Colours
+- Layouts
+- Window behaviour
+
+After changing configuration:
 
 ```bash
 make clean
+make
+sudo make install
 ```
 
-#### Delete old configuration files
+---
 
-```bash
-rm config.h
-```
+## 📚 About
 
-Also make sure to delete any other unneeded files as well. Then compile and install.
+This repository contains my personal dwm build used as part of my Linux workflow.
 
+The goal is to maintain a lightweight, fast, and keyboard-focused desktop environment while keeping the simplicity of the suckless philosophy.
 
-# ⭐ Known issues and limitations
-----------------------------
+---
 
-This project doesn't have any issues in my opinion but you could create an issue if you want something to change.
+## 📄 License
 
-
-# ✌️ Getting help
-------------
-
-You can create an issue and I will try to help you as much as I can.
-
-
-# 🔔 Contributing
-------------
-
-First read the code of conduct and contributing file. Then you can fork the repository, add your own stuff and create a pull/merge request.
-
-
-# ⚠ License
--------
-
-MIT
+MIT License
