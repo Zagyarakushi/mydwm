@@ -10,7 +10,7 @@ dwm is a lightweight dynamic window manager from the suckless project.
 
 ## 📸 Preview
 
-![dwm screenshot](screenshots/dwm.png)
+![dwm screenshot](dwm.png)
 
 ---
 
